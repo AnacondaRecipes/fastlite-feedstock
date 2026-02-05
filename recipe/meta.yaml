@@ -1,0 +1,48 @@
+{% set name = "fastlite" %}
+{% set version = "0.2.4" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: 72de35edcc0701caf9b9fcabf828db07563576a62732d2581ba601a960440a8a
+
+build:
+  number: 0
+  skip: true  # [py<310]
+  script: {{ PYTHON }} -m pip install --no-deps --no-build-isolation . -vv
+
+requirements:
+  host:
+    - python
+    - pip
+    - setuptools >=64.0
+  run:
+    - python
+    # https://github.com/AnswerDotAI/fastlite/blob/0.2.4/settings.ini#L8
+    - fastcore >=1.7.1
+    - apswutils >=0.1.2
+
+test:
+  imports:
+    - fastlite
+  requires:
+    - pip
+  commands:
+    - pip check
+
+about:
+  home: https://fastlite.answer.ai
+  summary: fastlite provides some little quality-of-life improvements for interactive use of the wonderful sqlite-utils library.
+  description: fastlite provides some little quality-of-life improvements for interactive use of the wonderful sqlite-utils library.
+  license: Apache-2.0
+  license_file: LICENSE
+  license_family: Apache
+  doc_url: https://fastlite.answer.ai
+  dev_url: https://github.com/AnswerDotAI/fastlite
+
+extra:
+  recipe-maintainers:
+    - synapticarbors
