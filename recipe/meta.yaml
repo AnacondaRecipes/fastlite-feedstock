@@ -9,7 +9,7 @@ source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: f1ac4329fe18c7bf027a09d05e856215ae9c2fc8e1c0044e110f9a8a36ea1995
   patches:
-    - 0001-remove-pkg_resources-import.patch
+    - patches/0001-remove-pkg_resources-import.patch
 
 build:
   number: 1
